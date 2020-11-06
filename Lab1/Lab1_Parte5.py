@@ -17,7 +17,7 @@ def menuoptions(o):
         fresolvente(a,b,c)
     if o == "2":
         print("Valor de Fibonacci de 2020: ")
-        fibonacci_value(20)
+        fibonacci_value(2020)
     if o == "9":
         return sys.exit(0)
     print("")
