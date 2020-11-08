@@ -24,9 +24,10 @@ def menuoptions(o):
         print("Area: ",areatrapezio(base,basemenor,altura))
     if o == "3":
         print("Area do Triangulo Escaleno")
-        a=int(input("Insira o valor de um dos lados: "))
-        b=int(input("Insira o valor de um dos lados: "))
-        c=int(input("Insira o valor de um dos lados: "))
+        a=int(input("Insira o valor de um dos lado 1: "))
+        b=int(input("Insira o valor de um dos lado 2: "))
+        c=int(input("Insira o valor de um dos lado 3: "))
+
         print("Area: ",areatriangulo(a,b,c))
     if o == "9":
         return sys.exit(0)
