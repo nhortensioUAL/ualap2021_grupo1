@@ -1,50 +1,49 @@
-# -*- coding: utf-8 -*-
 import sys,math
 
 def menu():
     print("Menu")
-    print("Selecione 1 - Area do rectangulo")
-    print("Selecione 2 - Area do Trapezio")
-    print("Selecione 3 - Area do Triangulo")
-    print("Selecione 9 - exit")
-    o=str(input("Selecione uma opcao: "))
-    menuoptions(o)
+    print("Selecione 1 - Área do Rectângulo")
+    print("Selecione 2 - Área do Trapézio")
+    print("Selecione 3 - Área do Triângulo")
+    print("Selecione 9 - Sair")
+    opcao = str(input("Selecione uma opção: "))
+    menuoptions(opcao)
     
-def menuoptions(o):
-    if o == "1":
-        print("Area do Rectangulo")
-        base=int(input("Insira o valor da base: "))
-        altura=int(input("Insira o valor da altura: "))
-        print("Area: ",arearect(base,altura))
-    if o == "2":
-        print("Area do Trapezio")
-        base=int(input("Insira o valor da base maior: "))
-        basemenor=int(input("Insira o valor da base menor: "))
-        altura=int(input("Insira o valor da altura: "))
-        print("Area: ",areatrapezio(base,basemenor,altura))
-    if o == "3":
-        print("Area do Triangulo Escaleno")
-        a=int(input("Insira o valor de um dos lado 1: "))
-        b=int(input("Insira o valor de um dos lado 2: "))
-        c=int(input("Insira o valor de um dos lado 3: "))
+def menuoptions(opcao):
+    if opcao == "1":
+        print("Área do Rectângulo")
+        base = int(input("Insira o valor da base: "))
+        altura = int(input("Insira o valor da altura: "))
+        print("Área: ", area_rectangulo(base, altura))
+    if opcao == "2":
+        print("Área do Trapézio")
+        base_maior = int(input("Insira o valor da base maior: "))
+        base_menor = int(input("Insira o valor da base menor: "))
+        altura = int(input("Insira o valor da altura: "))
+        print("Área: ", area_trapezio(base_maior, base_menor, altura))
+    if opcao == "3":
+        print("Área do Triângulo")
+        lado_a = int(input("Insira o valor de um dos lado A: "))
+        lado_b = int(input("Insira o valor de um dos lado B: "))
+        lado_c = int(input("Insira o valor de um dos lado C: "))
 
-        print("Area: ",areatriangulo(a,b,c))
-    if o == "9":
+        print("Área: ",3 area_triangulo(lado_a, lado_b, lado_c))
+    if opcao == "9":
         return sys.exit(0)
     print("")
     return menu()
 
-def areatrapezio(base,basemenor,altura):
-	area=(base+basemenor)*altura/2
+def area_trapezio(base_maior, base_menor,altura):
+	area = (base_maior + base_menor) * altura / 2
 	return area
 
-def arearect(base,altura):
-	area=base*altura
+def area_rectangulo(base, altura):
+	area = base * altura
 	return area
 
-def areatriangulo(a,b,c):
-    s=(a+b+c)/2
-    area=math.sqrt(s*(s-a)*(s-b)*(s-c))
+def area_triangulo(lado_a, lado_b, lado_c):
+    s = (lado_a + lado_b + lado_c) / 2
+    area = math.sqrt(s * (s - lado_a) * (s - lado_b) * (s - lado_c))
     return area
 
 menu()

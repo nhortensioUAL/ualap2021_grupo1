@@ -2,38 +2,38 @@ import math,sys
 
 def menu():
     print("Menu")
-    print("Selecione 1 - Formula Resolvente")
+    print("Selecione 1 - Fórmula Resolvente")
     print("Selecione 2 - Valor de Fibonacci de 2020")
-    print("Selecione 9 - exit")
-    o=str(input("Selecione uma opcao: "))
-    menuoptions(o)
+    print("Selecione 9 - Sair")
+    opcao = str(input("Selecione uma opção: "))
+    menuoptions(opcao)
     
-def menuoptions(o):
-    if o == "1":
-        print("Formula Resolvente")
-        a=int(input("Insira o valor do a: "))
-        b=int(input("Insira o valor do b: "))
-        c=int(input("Insira o valor do c: "))
-        fresolvente(a,b,c)
-    if o == "2":
+def menuoptions(opcao):
+    if opcao == "1":
+        print("Fórmula Resolvente")
+        a = int(input("Insira o valor do a: "))
+        b = int(input("Insira o valor do b: "))
+        c = int(input("Insira o valor do c: "))
+        f_resolvente(a, b, c)
+    if opcao == "2":
         print("Valor de Fibonacci de 2020: ")
         fibonacci_value(2020)
-    if o == "9":
+    if opcao == "9":
         return sys.exit(0)
     print("")
-    return menu()2
+    return menu()
 
 #Parte 5
 #Exercicio 1
-def fresolvente(a,b,c):
-    delta=(math.pow(b,2)-(4*a*c))
-    if(delta<0):
+def f_resolvente(a, b, c):
+    delta = (math.pow(b, 2) - (4 * a * c))
+    if(delta < 0):
         print("Não se pode fazer raizes de números negativos")
         return menuoptions(1)
     else:
-        positivo= (-b + math.sqrt(delta))/(2*a)
-        negativo= (-b - math.sqrt(delta))/(2*a)
-        if(positivo==negativo):
+        positivo = (-b + math.sqrt(delta)) / (2 * a)
+        negativo = (-b - math.sqrt(delta)) / (2 * a)
+        if(positivo == negativo):
             print("O zero da função é: ",positivo)
         else:
            print("Os zeros da função são: ", positivo, " e ", negativo)
@@ -62,12 +62,12 @@ com o valor 1."""
 
 
 def fibonacci_value(n):
- ultimo_termo=1
- penultimo_termo=1
- if (n==0) or (n==1):
+ ultimo_termo = 1
+ penultimo_termo = 1
+ if (n == 0) or (n == 1):
     print("1")
  else:
-    for i in range(2,n):
+    for i in range(2, n):
         # Ponto 1
         termo_atual = ultimo_termo + penultimo_termo
         # Ponto 2

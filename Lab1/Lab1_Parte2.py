@@ -10,7 +10,7 @@ print(math.sqrt(math.pow(2, (3/4))))
 
 soma = 0
 for i in range (1, 5 + 1):
-    soma = soma + (i ** 2)
+    soma = soma + (i**2)
     print(soma)
 
 print("Erro! Não é possível divisão por zero. A operação 42 / 0 não é possível.")

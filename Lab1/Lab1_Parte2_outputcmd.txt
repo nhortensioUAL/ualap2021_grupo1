@@ -1,0 +1,36 @@
+Microsoft Windows [Version 10.0.18363.1139]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\anaro>mkdir Laboratorio1_Parte2
+
+C:\Users\anaro> cd Laboratorio1_Parte2
+
+C:\Users\anaro\Laboratorio1_Parte2>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 1620-805E
+
+ Directory of C:\Users\anaro\Laboratorio1_Parte2
+
+11/08/2020  09:12 PM    <DIR>          .
+11/08/2020  09:12 PM    <DIR>          ..
+11/08/2020  09:09 PM               328 Lab1_Parte2.py
+               1 File(s)            328 bytes
+               2 Dir(s)  176,479,916,032 bytes free
+
+C:\Users\anaro\Laboratorio1_Parte2>dir > Lab1_Parte2_conteudo_directorio.txt
+
+C:\Users\anaro\Laboratorio1_Parte2>python Lab1_Parte2.py
+144
+12484.222222222223
+4.0
+1.2968395546510096
+1
+5
+14
+30
+55
+Erro! Não é possível divisão por zero. A operação 42 / 0 não é possível.
+Grupo1
+Grupo1 2
+
+C:\Users\anaro\Laboratorio1_Parte2>
