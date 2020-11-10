@@ -27,7 +27,7 @@ def menuoptions(opcao):
         lado_b = int(input("Insira o valor de um dos lado B: "))
         lado_c = int(input("Insira o valor de um dos lado C: "))
 
-        print("Área: ",3 area_triangulo(lado_a, lado_b, lado_c))
+        print("Área: ", area_triangulo(lado_a, lado_b, lado_c))
     if opcao == "9":
         return sys.exit(0)
     print("")

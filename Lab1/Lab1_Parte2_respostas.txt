@@ -20,7 +20,7 @@ Resposta:
 
 Resposta:
 •	Incluir conteudo do directório num ficheiro de texto com o '>'
-		C:\ dir > conteudo_directorio.txt
+		C:\ dir > Lab1_Parte2_conteudo_directorio.txt
 
 6. Execute o interpretador Python com as instruções do ficheiro gravado, garantindo que os resultados das várias avaliações são mostrados;
 

@@ -28,7 +28,7 @@ def menuoptions(opcao):
 def f_resolvente(a, b, c):
     delta = (math.pow(b, 2) - (4 * a * c))
     if(delta < 0):
-        print("Não se pode fazer raizes de números negativos")
+        print("Não se pode fazer raízes de números negativos")
         return menuoptions(1)
     else:
         positivo = (-b + math.sqrt(delta)) / (2 * a)
