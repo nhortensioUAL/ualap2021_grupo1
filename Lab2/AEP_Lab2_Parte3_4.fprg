@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="RSF"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-11-11 09:21:38 PM"/>
+        <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjU1OjI4IFBNOzIxMzc="/>
+        <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA5OjIxOjM4IFBNOzE7MjI0MA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="pontos" type="Integer" array="False" size=""/>
+            <declare name="escolha" type="Integer" array="False" size=""/>
+            <assign variable="pontos" expression="20"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="1" end="5" direction="inc" step="1">
+                <output expression="&quot;Fa&#231;a a sua escolha: 1. Cara     2. Coroa &quot;" newline="True"/>
+                <input variable="escolha"/>
+                <if expression="escolha == 1 or escolha == 2">
+                    <then>
+                        <if expression="escolha == 1">
+                            <then>
+                                <assign variable="pontos" expression="pontos - 5"/>
+                            </then>
+                            <else>
+                                <assign variable="pontos" expression="pontos + 5"/>
+                            </else>
+                        </if>
+                        <output expression="i" newline="True"/>
+                    </then>
+                    <else>
+                        <output expression="&quot;Escolha inv&#225;lida. Escolha entre 1. Cara ou 2. Coroa&quot;" newline="True"/>
+                        <assign variable="i" expression="i - 1"/>
+                        <output expression="i" newline="True"/>
+                    </else>
+                </if>
+            </for>
+            <if expression="pontos &gt; 0">
+                <then>
+                    <output expression="&quot;Ganhou o jogo! Parab&#233;ns!&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Perdeu o jogo!&quot;" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

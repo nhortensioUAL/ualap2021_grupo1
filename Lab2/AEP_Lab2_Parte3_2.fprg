@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="RSF"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-11-11 08:52:27 PM"/>
+        <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA2OjU5OjM0IFBNOzIxMzY="/>
+        <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjUyOjI3IFBNOzE7MjI0MQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="numero" type="Integer" array="False" size=""/>
+            <input variable="numero"/>
+            <if expression="numero == 10">
+                <then>
+                    <output expression="&quot;N&#250;mero inv&#225;lido&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="numero &gt; 10">
+                        <then>
+                            <output expression="&quot;N&#250;mero superior a 10&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;N&#250;mero inferior a 10&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

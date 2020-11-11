@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="RSF"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-11-11 08:55:25 PM"/>
+        <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjUyOjMwIFBNOzIxMjc="/>
+        <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjU1OjI1IFBNOzI7MjI0Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="preco" type="Integer" array="False" size=""/>
+            <input variable="preco"/>
+            <output expression="preco*1.23" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
