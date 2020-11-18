@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="RSF"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-11-18 09:52:21 PM"/>
+        <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTE4OzA4OjQwOjA4IFBNOzIxMzY="/>
+        <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTE4OzA5OjUyOjIxIFBNOzM7MjI0NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="soma, i, n" type="Integer" array="False" size=""/>
+            <declare name="nota, peso, pesoTotal" type="Real" array="False" size=""/>
+            <assign variable="soma" expression="0"/>
+            <assign variable="pesoTotal" expression="0"/>
+            <output expression="&quot;Insira o n&#250;mero total de componentes:&quot;" newline="True"/>
+            <input variable="n"/>
+            <for variable="i" start="1" end="n" direction="inc" step="1">
+                <output expression="&quot;Insira a nota:&quot;" newline="True"/>
+                <input variable="nota"/>
+                <output expression="&quot;Insira o peso:&quot;" newline="True"/>
+                <input variable="peso"/>
+                <assign variable="pesoTotal" expression="pesoTotal + peso"/>
+                <assign variable="soma" expression="soma + (nota*peso)"/>
+                <output expression="pesoTotal" newline="True"/>
+                <output expression="soma" newline="True"/>
+            </for>
+            <if expression="pesoTotal != 1">
+                <then>
+                    <output expression="&quot;Os pesos n&#227;o somam 100%&quot;" newline="True"/>
+                </then>
+                <else>
+                    <output expression="&quot;Nota:&quot; &amp; soma" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

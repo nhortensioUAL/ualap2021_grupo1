@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="RSF"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-11-18 09:36:44 PM"/>
+        <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTE4OzA5OjAxOjAyIFBNOzIxMjg="/>
+        <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTE4OzA5OjM2OjQ0IFBNOzE7MjI1MA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;Quantos d&#237;gitos pretende ordenar?&quot;" newline="True"/>
+            <declare name="n, i, count, num, j, tmp" type="Integer" array="False" size=""/>
+            <input variable="n"/>
+            <assign variable="count" expression="0"/>
+            <declare name="l" type="Integer" array="True" size="n"/>
+            <while expression="count &lt; n">
+                <input variable="num"/>
+                <assign variable="l[count]" expression="num"/>
+                <assign variable="count" expression="count + 1"/>
+            </while>
+            <for variable="i" start="0" end="n-1" direction="inc" step="1">
+                <for variable="j" start="0" end="n-i-2" direction="inc" step="1">
+                    <if expression="l[j]&gt;l[j+1]">
+                        <then>
+                            <assign variable="tmp" expression="l[j+1]"/>
+                            <assign variable="l[j+1]" expression="l[j]"/>
+                            <assign variable="l[j]" expression="tmp"/>
+                        </then>
+                        <else/>
+                    </if>
+                </for>
+            </for>
+            <assign variable="count" expression="0"/>
+            <while expression="count &lt; n">
+                <output expression="l[count]" newline="True"/>
+                <assign variable="count" expression="count + 1"/>
+            </while>
+        </body>
+    </function>
+</flowgorithm>
