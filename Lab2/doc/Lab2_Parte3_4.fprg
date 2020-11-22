@@ -4,9 +4,10 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="RSF"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2020-11-11 09:21:38 PM"/>
+        <attribute name="saved" value="2020-11-22 04:58:55 pm"/>
         <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjU1OjI4IFBNOzIxMzc="/>
         <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA5OjIxOjM4IFBNOzE7MjI0MA=="/>
+        <attribute name="edited" value="TkhvcnRlbnNpb19VQUw7REVTS1RPUC0wT0FQMU8wOzIwMjAtMTEtMjI7MDQ6NTg6NTUgcG07NDszODQx"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -14,8 +15,9 @@
             <declare name="pontos" type="Integer" array="False" size=""/>
             <declare name="escolha" type="Integer" array="False" size=""/>
             <assign variable="pontos" expression="20"/>
-            <declare name="i" type="Integer" array="False" size=""/>
-            <for variable="i" start="1" end="5" direction="inc" step="1">
+            <declare name="ronda" type="Integer" array="False" size=""/>
+            <for variable="ronda" start="1" end="5" direction="inc" step="1">
+                <output expression="&quot;Ronda &quot; &amp; ronda" newline="True"/>
                 <output expression="&quot;Fa&#231;a a sua escolha: 1. Cara     2. Coroa &quot;" newline="True"/>
                 <input variable="escolha"/>
                 <if expression="escolha == 1 or escolha == 2">
@@ -28,12 +30,10 @@
                                 <assign variable="pontos" expression="pontos + 5"/>
                             </else>
                         </if>
-                        <output expression="i" newline="True"/>
                     </then>
                     <else>
-                        <output expression="&quot;Escolha inv&#225;lida. Escolha entre 1. Cara ou 2. Coroa&quot;" newline="True"/>
-                        <assign variable="i" expression="i - 1"/>
-                        <output expression="i" newline="True"/>
+                        <output expression="&quot;Escolha inv&#225;lida, a ronda ser&#225; repetida.&quot;" newline="True"/>
+                        <assign variable="ronda" expression="ronda - 1"/>
                     </else>
                 </if>
             </for>
