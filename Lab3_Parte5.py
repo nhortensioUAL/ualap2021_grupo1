@@ -11,7 +11,7 @@ def menu():
 def le_ficheiro():
     lista_series=[]
     linhas=[]
-    ficheiro = open("imdb.txt", "r",encoding='utf-8')
+    ficheiro = open("imdb.txt", "r", encoding='utf-8')
     linhas = ficheiro.read().splitlines()
     for i in linhas:
         lista_series.append(i.split(";"))
@@ -103,7 +103,7 @@ if __name__ == "__main__":
             else:
                 print("Ano inválido!")
         elif(comando[0].upper() == "LR"):
-            ranking = converter_ranking(float(input("Indique o ranking pretendido: ")))
+            ranking = converter_ranking(float(input("Indique o ranking pretendido(0.0-10.0): ")))
             if(validacoes_ranking(ranking)):
                 listar_series_ranking(lista_series,ranking)
         elif(comando[0].upper() == "LG"):

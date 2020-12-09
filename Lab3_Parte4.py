@@ -3,23 +3,39 @@
 def escreve_ficheiro(lista,nome_ficheiro):
     ficheiro = open (nome_ficheiro + ".txt", "w")
     for i in lista:
-     ficheiro.write(str(i))
+        for z in i:
+            ficheiro.write(str(z) + ",")
+        ficheiro.write("\n")
     ficheiro.close()
 
 
-# Função que lÊ os dados de um ficheiro
+# Função que lê os dados de um ficheiro
 def ler_ficheiro (lista,nome_ficheiro):
     ficheiro= open(nome_ficheiro + ".txt", "r")
-    linhas = list(ficheiro)
-    for i in linhas:
-        lista_alunos.append(i)
+    linhas = ficheiro.readlines()
+    for row in linhas:
+        row = row.split(",")
+        if(row[0] != "\n" ):
+            if(ja_existe(lista,row[0])):
+                pass
+            else:
+                row.pop(-1)
+                lista.append(row) 
     ficheiro.close()
-  
+    
+    
+def ja_existe(lista,nr_aluno):
+    for i in lista:
+        if(int(i[0]) == nr_aluno):
+            return True
+        else:
+            return False
+    
     
 # Função que valida se aluno já foi registado
 def existe_aluno (lista,r_aluno):
     for i in lista:
-        if(i[0]==nr_aluno):
+        if(int(i[0])==nr_aluno):
             return True
     return False
      
@@ -27,7 +43,7 @@ def existe_aluno (lista,r_aluno):
 # Função que valida se o momento de avaliação já foi registado      
 def existe_avaliacao (lista, nr_aluno, momento):
     for i in lista:
-        if(i[0]==nr_aluno):
+        if(int(i[0])==nr_aluno):
             for j in i:
                 if(j==momento):
                     return True
@@ -43,7 +59,7 @@ def registar_aluno (lista,nr_aluno,nome):
 # Função que regista a nota de um determinado momento de avaliação
 def regista_nota (lista,nr_aluno,momento,valor):
     for i in range(len(lista)):
-        if(lista[i][0]==nr_aluno):
+        if(int(lista[i][0])==int(nr_aluno)):
             lista[i].append(momento)
             lista[i].append(valor)
             print("Nota registada com sucesso!")
@@ -67,32 +83,25 @@ def get_grades (lista,nr_aluno):
   t1 = 0
   t2 = 0
   proj = 0  
-  contador_notas = 0
   for i in range(len(lista)):
-      if(lista[i][0]==nr_aluno):
+      if(int(lista[i][0]) == int(nr_aluno)):
           for j in range (len(lista[i])):
               if(lista[i][j]=="T1"):
-                  t1= lista[i][j+1]
-                  contador_notas += 1
+                  t1= float(lista[i][j+1])
               elif(lista[i][j]=="T2"):
-                  t2= lista[i][j+1]
-                  contador_notas += 1
+                  t2= float(lista[i][j+1])
               elif(lista[i][j]=="P"):
-                  proj = lista[i][j+1]
-                  contador_notas += 1
-  if(contador_notas != 3):
-      print("Ainda não foram inseridos todos os momentos de avaliação.")
-  else:
-     return t1,t2,proj                                                           
+                  proj = float(lista[i][j+1])
+  return t1,t2,proj 
+                                                        
         
-
 # Função que calcula a media do aluno consoante as notas de todos os momentos de avaliação          
-def calcula_media(nr_aluno,notas):
-    nota_testes = (notas [0] + notas [1]) * 0.4
+def calcula_media(notas):
+    nota_testes = (notas [0] * 0.2) + (notas[1] * 0.2)
     nota_projeto = notas [2] * 0.6
     media = nota_testes + nota_projeto
-    if(media > 21):
-        media=20
+    if(media > 20):
+        media = 20
     return media
    
 
@@ -130,6 +139,7 @@ if __name__ == "__main__":
             else:    
                 nome=input("Insira o nome do aluno: ")
                 registar_aluno(lista_alunos,nr_aluno,nome)
+                print(lista_alunos)
                 print ("Aluno registado com sucesso!", "\n")
         elif(comando[0] == "RM"):
           nr_aluno=input("Insira o número do aluno: ")
@@ -157,8 +167,12 @@ if __name__ == "__main__":
             alterar_nota(lista_alunos,nr_aluno,momento,valor)
         elif(comando[0] == "CM"):
             nr_aluno = input("Insira o número do aluno: ")  
-            media = calcula_media(nr_aluno,get_grades(nr_aluno))
-            print("A média do aluno", nr_aluno, "é: ", media)
+            notas = get_grades(lista_alunos,nr_aluno)
+            if(None in notas):
+                media = calcula_media(notas)
+                print("A média do aluno", nr_aluno, "é: ", media)
+            else:
+                print("Ainda não foram inseridos todos os momentos de avaliação.")   
         elif(comando[0] == "G"):
             nome_ficheiro = input("Indique qual o nome pretendido para o ficheiro: ")
             escreve_ficheiro(lista_alunos,nome_ficheiro)    
