@@ -20,23 +20,33 @@ def le_ficheiro():
     return lista_series
 
 
-# Função que lista as séries por ordem alfabética
-def listar_series_alf(lista):
-    lista.sort()
-    for i in lista:
-        print(i)
+# Função que ordena uma lista por ordem alfabética
+def ordenar_nome(lista):
+  for i in range (len(lista)-1):
+      for j in range (len(lista)-1-i):
+         if(lista[j][0] > lista [j+1][0]):
+             tmp = lista[j]
+             lista[j] = lista[j+1]
+             lista[j+1] = tmp          
+  return lista
    
     
-# Função que ordena uma lista por ranking
+# Função que ordena uma lista por ranking decrescente
 def ordenar_ranking(lista):
-  valor = 0
-  for i in range (len(lista)):
-     if(i < len(lista) -1 ):
-         if(lista[i][3] < lista [i+1][3]):
-             valor == lista[i][3]
-             lista[i][3] == lista[i+1][3]
-             lista[i+1][3] == valor           
+  for i in range (len(lista)-1):
+      for j in range (len(lista)-1-i):
+         if(lista[j][3] < lista [j+1][3]):
+             tmp = lista[j]
+             lista[j] = lista[j+1]
+             lista[j+1] = tmp          
   return lista
+
+
+# Lista as séries por ordem alfabética
+def listar_series_alf(lista):
+    lista = ordenar_nome(lista)
+    for i in lista:
+        print(i)
 
 
 # Função que lista as séries por intervalo de anos
@@ -49,7 +59,7 @@ def listar_series_interval(lista,ano_inicial,ano_final):
 
 # Função que lista as séries por ranking
 def listar_series_ranking(lista,ranking):
-    lista= ordenar_ranking(lista)
+    lista = ordenar_ranking(lista)
     for i in lista:
         if(float(i[3]) >= ranking):
             print(i)    
@@ -103,7 +113,7 @@ if __name__ == "__main__":
             else:
                 print("Ano inválido!")
         elif(comando[0].upper() == "LR"):
-            ranking = converter_ranking(float(input("Indique o ranking pretendido(0.0-10.0): ")))
+            ranking = converter_ranking(float(input("Indique o ranking pretendido(0.0-10.0): ")))       
             if(validacoes_ranking(ranking)):
                 listar_series_ranking(lista_series,ranking)
         elif(comando[0].upper() == "LG"):
