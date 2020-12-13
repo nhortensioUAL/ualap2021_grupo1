@@ -3,7 +3,7 @@
 
 # Função que escreve a lista num ficheiro
 def escreve_ficheiro(lista,nome_ficheiro):
-    ficheiro = open ("..\doc\" + nome_ficheiro + ".txt", "w")
+    ficheiro = open ("..\doc\\" + nome_ficheiro + ".txt", "w")
     for i in lista:
         for z in i:
             ficheiro.write(str(z) + ",")
@@ -13,7 +13,7 @@ def escreve_ficheiro(lista,nome_ficheiro):
 
 # Função que lê os dados de um ficheiro
 def ler_ficheiro (lista,nome_ficheiro):
-    ficheiro= open("..\doc\" + nome_ficheiro + ".txt", "r")
+    ficheiro= open("..\doc\\" + nome_ficheiro + ".txt", "r")
     linhas = ficheiro.readlines()
     for row in linhas:
         row = row.split(",")
