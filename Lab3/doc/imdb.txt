@@ -1,0 +1,16 @@
+Série;Género;Ano;Ranking
+Chernobyl;Drama;2019;9.4
+True Detective;Crime;2014;9.0
+Fargo;Crime;2014;8.9
+Friends;Comédia;1994;8.9
+When They See Us;Drama;2019;8.9
+Stranger Things;Drama;2016;8.8
+Black Mirror;Drama;2011;8.8
+Dark;Crime;2017;8.8
+Narcos;Biografia;2015;8.8
+Twin Peaks;Crime;1990;8.8
+The Boys;Ação;2019;8.7
+Westworld;Drama;2016;8.7
+Fleabag;Comédia;2016;8.7
+BoJack Horseman;Animação;2014;8.7
+Haunting of Hill House;Drama;2018;8.6

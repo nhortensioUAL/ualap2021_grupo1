@@ -1,7 +1,9 @@
+# Parte 4
+
 
 # Função que escreve a lista num ficheiro
 def escreve_ficheiro(lista,nome_ficheiro):
-    ficheiro = open (nome_ficheiro + ".txt", "w")
+    ficheiro = open ("..\doc\" + nome_ficheiro + ".txt", "w")
     for i in lista:
         for z in i:
             ficheiro.write(str(z) + ",")
@@ -11,7 +13,7 @@ def escreve_ficheiro(lista,nome_ficheiro):
 
 # Função que lê os dados de um ficheiro
 def ler_ficheiro (lista,nome_ficheiro):
-    ficheiro= open(nome_ficheiro + ".txt", "r")
+    ficheiro= open("..\doc\" + nome_ficheiro + ".txt", "r")
     linhas = ficheiro.readlines()
     for row in linhas:
         row = row.split(",")
@@ -114,7 +116,7 @@ def menu_principal():
     print(" ","CM - Calcular média")
     print(" ","G  - Guardar informação")
     print(" ","L  - Ler informação")
-    print(" ","S  - Sair")
+    print(" ","S  - Sair", "\n")
     
     
  # Menu dos momentos de avaliação   
@@ -125,12 +127,11 @@ def menu_RM():
     print(" ", "S  - Menu principal")
 
 
-
 if __name__ == "__main__":
     lista_alunos = []
     while True:
         menu_principal()
-        comando = input( "Indique a instrução: ")
+        comando = input("Indique a instrução: ")
         comando = comando.split()
         if(comando[0] == "R"):
             nr_aluno=input("Insira o número do aluno: ")
@@ -182,4 +183,3 @@ if __name__ == "__main__":
             print(lista_alunos)
         elif(comando[0] == "S"):
             break    
-    
