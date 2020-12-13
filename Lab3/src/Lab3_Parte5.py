@@ -4,7 +4,7 @@ def menu():
    print(" ","LT - Listar séries por intervalo de anos.")
    print(" ","LR - Listar séries por ranking.")
    print(" ","LG - Listar séries por género")
-   print(" ","S  - Sair")
+   print(" ","S  - Sair", "\n")
 
 
 # Função que faz a leitura do ficheiro
