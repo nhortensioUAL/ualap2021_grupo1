@@ -7,7 +7,7 @@ if __name__ == "__main__":
     while True:
         instrucoes = input()
         instrucoes = instrucoes.split(" ")
-        if( instrucoes [0] == "R"):
+        if(instrucoes [0] == "R"):
             if(existe_escalao(instrucoes[4])):
                 regista_cliente(clientes,instrucoes[1],instrucoes[2],instrucoes[3],
                             instrucoes[4],instrucoes[5])
