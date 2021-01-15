@@ -1,0 +1,29 @@
+Parte 2
+
+1. Crie um diretório no ambiente de trabalho;
+
+Resposta:
+•	Navegar até ao ambiente de trabalho utlizando comando cd
+•	Utilizar o comando md ou mkdir para criar directório
+
+4. Na linha de comandos, navegue até ao diretório criado;
+
+Resposta:
+•	Navegar até ao ambiente de trabalho utlizando comando cd
+
+5. Mostre o conteúdo do diretório na linha de comandos;
+
+Resposta:
+•	Utilização do comando dir para listar conteudo do directório
+
+(a) Guarde o resultado num ficheiro de texto.
+
+Resposta:
+•	Incluir conteudo do directório num ficheiro de texto com o '>'
+		C:\ dir > Lab1_Parte2_conteudo_directorio.txt
+
+6. Execute o interpretador Python com as instruções do ficheiro gravado, garantindo que os resultados das várias avaliações são mostrados;
+
+Resposta:
+•	Utlização do comando python ou ipython
+	C:\ ipython Lab1_Parte2.py

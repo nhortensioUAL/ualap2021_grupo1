@@ -1,0 +1,11 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 1620-805E
+
+ Directory of C:\Users\anaro\Laboratorio1_Parte2
+
+11/08/2020  09:13 PM    <DIR>          .
+11/08/2020  09:13 PM    <DIR>          ..
+11/08/2020  09:13 PM                 0 Lab1_Parte2_conteudo_directorio.txt
+11/08/2020  09:09 PM               328 Lab1_Parte2.py
+               2 File(s)            328 bytes
+               2 Dir(s)  176,479,596,544 bytes free

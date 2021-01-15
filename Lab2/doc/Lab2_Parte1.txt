@@ -1,0 +1,36 @@
+Parte 1
+Indique o que cada código realiza:
+
+1.
+result = 0
+for i in range(1 , 5 + 1):
+	result += i**2
+print(result)
+
+Resposta: Imprime o somatório de 'i' ao quadrado em que 'i' toma os 
+valores de 1, 2, 3, 4 e 5
+
+Output: 55
+
+2.
+for i in range(1 , 5 + 1):
+	for j in range(5, 0, -1):
+		print((i + j) % 2)
+
+Resposta: Imprime o resto da divisão por 2 para cada iteração de 'i' 
+tomando os valores entre 1 e 5 e somando 'j' tomando os valores de 5 a 1.
+
+Output: 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0
+
+
+3. 
+for i in range(20):
+	if (i == 5 or i == 10):
+		continue
+	else:
+		print(i, end=’ ’)
+
+Resposta: Imprime o número correspondente ao 'i' entre os valores 0 e 19 se
+não forem iguais a 5 e 10. Neste casos a impressão não é executada.
+
+Output: 0 1 2 3 4 6 7 8 9 11 12 13 14 15 16 17 18 19 

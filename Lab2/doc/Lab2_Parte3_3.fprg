@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="RSF"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2020-11-22 04:28:55 pm"/>
+        <attribute name="created" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjUyOjMwIFBNOzIxMjc="/>
+        <attribute name="edited" value="UlNGO0FCQUNPLVJTRjsyMDIwLTExLTExOzA4OjU1OjI1IFBNOzI7MjI0Mw=="/>
+        <attribute name="edited" value="TkhvcnRlbnNpb19VQUw7REVTS1RPUC0wT0FQMU8wOzIwMjAtMTEtMjI7MDQ6Mjg6NTUgcG07NTszODM5"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="preco" type="Integer" array="False" size=""/>
+            <output expression="&quot;Insira o pre&#231;o do produto para o qual pretende efectuar o c&#225;lculo do IVA:&quot;" newline="True"/>
+            <input variable="preco"/>
+            <output expression="&quot;O valor final do seu produto com IVA &#233; de&quot; &amp; preco*1.23 &amp; &quot;&#8364;&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
