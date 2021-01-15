@@ -22,7 +22,7 @@ def cli():
             con.detalhes_jogo(estado_jogo)
         if(instrucao[0] == "D"):
             if(instrucao[2]):
-                con.desiste(estado_jogo,instrucao[1],instrucao[2])
+                con.desistir(estado_jogo,instrucao[1],instrucao[2])
             else:
                 con.desistir(estado_jogo,instrucao[1])
         if(instrucao[0] == "CP"):

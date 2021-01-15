@@ -1,4 +1,6 @@
 import pickle
+from models import game_status as mod
+
 
 def regista_jogador(estado_jogo,nome):
     pass
@@ -22,7 +24,13 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
     pass
 
 def mostra_resultado(estado_jogo):
-    pass
+    if(mod.game_inprogress(estado_jogo)):
+        tabuleiro = mod.obter_tabuleiro(estado_jogo)
+        for coluna in range (0, len(tabuleiro)):
+            for linha in range(0,len(tabuleiro[coluna])):
+                print (coluna+1,linha+1,tabuleiro[coluna][linha], sep = " ")
+    else:
+        print("Não existe jogo em curso")
 
 def grava_ficheiro(estado_jogo,nome_ficheiro):
     try:
@@ -37,5 +45,5 @@ def le_ficheiro(nome_ficheiro):
         with open("file.save", "rb") as f:
             estado_jogo = pickle.load(f)
     except Exception as e:
-        print(’Ocorreu um erro no carregamento.’)
+        print("Ocorreu um erro no carregamento.")
     return estado_jogo
