@@ -1,3 +1,5 @@
+import pickle
+
 def regista_jogador(estado_jogo,nome):
     pass
 
@@ -23,7 +25,17 @@ def mostra_resultado(estado_jogo):
     pass
 
 def grava_ficheiro(estado_jogo,nome_ficheiro):
-    pass
+    try:
+        with open("file.save", "wb") as f:
+            pickle.dump(estado_jogo, f)
+    except Exception as e:
+        print("Ocorreu um erro na gravação.")
 
-def le_ficheiro(estado_jogo,nome_ficheiro):
-    pass
+def le_ficheiro(nome_ficheiro):
+    estado_jogo = None
+    try:
+        with open("file.save", "rb") as f:
+            estado_jogo = pickle.load(f)
+    except Exception as e:
+        print(’Ocorreu um erro no carregamento.’)
+    return estado_jogo

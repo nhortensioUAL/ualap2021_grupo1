@@ -1,8 +1,8 @@
-import controller as con
-import views as v
+from controller import game_controller as con
+from models import game_status as mod
 
-if __name__ == "__main__":
-    estado_jogo = v.cria_estado()
+def cli():
+    estado_jogo = mod.cria_estado()
     instrucao = input("Insira a instrucao:")
     instrucao = instrucao.split(" ")
     while True:
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         if(instrucao[0] == "V"):        
             con.mostra_resultado(estado_jogo)
         if(instrucao[0] == "G"):
-             con.grava_ficheiro(estado_jogo,instrucao[1])
+            con.grava_ficheiro(estado_jogo,instrucao[1])
         if(instrucao[0] == "L"):
-            con.le_ficheiro(estado_jogo,instrucao[1])
+            estado_jogo = con.le_ficheiro(instrucao[1])
              
