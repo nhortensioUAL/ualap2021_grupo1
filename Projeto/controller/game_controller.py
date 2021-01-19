@@ -36,6 +36,7 @@ def grava_ficheiro(estado_jogo,nome_ficheiro):
     try:
         with open("file.save", "wb") as f:
             pickle.dump(estado_jogo, f)
+            print ("Jogo gravado.")
     except Exception as e:
         print("Ocorreu um erro na gravação.")
 
@@ -44,6 +45,7 @@ def le_ficheiro(nome_ficheiro):
     try:
         with open("file.save", "rb") as f:
             estado_jogo = pickle.load(f)
+            print ("Jogo carregado.")
     except Exception as e:
         print("Ocorreu um erro no carregamento.")
     return estado_jogo
