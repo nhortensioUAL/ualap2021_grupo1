@@ -12,6 +12,7 @@ def cria_estado():
             "em curso":str,
             "jogador1":str,
             "jogador2":str,
+            "vez":str,
             "comprimento":int,
             "altura":int,
             "tamanho_sequencia":int,
@@ -28,4 +29,9 @@ def obter_tabuleiro(estado_jogo):
 # Devolve "True" se houver um jogo em curso
 def game_inprogress(estado_jogo):
     return estado_jogo["em_curso"] == "True"
-
+#Devolve o nome do jogador que tem a vez
+def quem_vez(estado_jogo):
+    return estado_jogo["vez"]
+#Devolve uma lista  com os nomes dos jogadores que estão a participar no jogo em curso
+def jogo_jogadores(estado_jogo):
+    return estado_jogo["jogador1"],estado_jogo["jogador2"]
