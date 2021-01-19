@@ -21,6 +21,7 @@ def desistir(estado_jogo,nome1,nome2=" "):
     pass
 
 def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
+    tabuleiro = mod.obter_tabuleiro(estado_jogo)
     if(not mod.game_inprogress(estado_jogo)):
         print("Não existe jogo em curso.")
     if(nome not in mod.jogo_jogadores):
@@ -28,12 +29,15 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
     if(not validar_pecas_especiais(estado_jogo,tamanho_peca)):
         print("Tamanho de peça não disponível.")
     if(not validar_posicao(estado_jogo,tamanho_peca,posicao,sentido)):
-        print("Posição irregular")       
-    tabuleiro = mod.obter_tabuleiro(estado_jogo)
+        print("Posição irregular.")       
+    if(tamanho_peca == 1):
+        tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,posicao)
     if(sentido == "E"):
-        insere_peca(tabuleiro,tamanho_peca,posicao,posicao - tamanho_peca)
+        tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao - tamanho_peca,posicao)
     else:
-        insere_peca(tabuleiro,tamanho_peca,posicao,posicao + tamanho_peca) 
+        tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,posicao + tamanho_peca) 
+    estado_jogo["tabuleiro"] = tabuleiro
+    return estado_jogo
       
 
 def mostra_resultado(estado_jogo):
@@ -76,19 +80,30 @@ def validar_posicao(estado_jogo,tamanho_peca,posicao,sentido):
     tabuleiro = mod.obter_tabuleiro(estado_jogo)
     if(sentido == "E"):
         posicao_final = posicao - tamanho_peca
-        if(posicao_final < 0):
+        if(posicao_final < 0 or posicao < 0):
             return False
         else:
             return True
     else:
         posicao_final = posicao + tamanho_peca
-        if(posicao_final > len(tabuleiro)-1):
+        if(posicao_final > len(tabuleiro)-1 or posicao > len(tabuleiro)-1):
             return False
         else:
             return True
 
-def insere_peca(tabuleiro,tamanho_peca,posicao_inicial,posicao_final):
-    pass
+def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
+    nr_pecas = tamanho_peca
+    for linha in range (0, len(tabuleiro)):
+      for coluna in range(posicao_inicial,posicao_final):
+        if(linha == len(tabuleiro) and nr_pecas > 0):
+            tabuleiro[linha][coluna] = nome
+            nr_pecas -=1
+        else:   
+            if(mod.not_empty(tabuleiro,linha,coluna) and nr_pecas > 0):
+                tabuleiro[linha-1][coluna] = nome
+                nr_pecas -=1
+    print("Peça colocada.")
+    return tabuleiro
 
 def sequencia_vencedora(estado_jogo,tamanho_sequencia):
     tabuleiro = mod.obter_tabuleiro(estado_jogo)
