@@ -26,9 +26,9 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
 def mostra_resultado(estado_jogo):
     if(mod.game_inprogress(estado_jogo)):
         tabuleiro = mod.obter_tabuleiro(estado_jogo)
-        for coluna in range (0, len(tabuleiro)):
-            for linha in range(0,len(tabuleiro[coluna])):
-                print (coluna+1,linha+1,tabuleiro[coluna][linha], sep = " ")
+        for linha in range (0, len(tabuleiro)):
+            for coluna in range(0,len(tabuleiro[coluna])):
+                print (linha+1,coluna+1,tabuleiro[coluna][linha], sep = " ")
     else:
         print("Não existe jogo em curso")
 
