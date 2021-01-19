@@ -21,7 +21,20 @@ def desistir(estado_jogo,nome1,nome2=" "):
     pass
 
 def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
-    pass
+    if(not mod.game_inprogress(estado_jogo)):
+        print("Não existe jogo em curso.")
+    if(nome not in mod.jogo_jogadores):
+        print("Jogador não participa no jogo em curso.")
+    if(not validar_pecas_especiais(estado_jogo,tamanho_peca)):
+        print("Tamanho de peça não disponível.")
+    if(not validar_posicao(estado_jogo,tamanho_peca,posicao,sentido)):
+        print("Posição irregular")       
+    tabuleiro = mod.obter_tabuleiro(estado_jogo)
+    if(sentido == "E"):
+        insere_peca(tabuleiro,tamanho_peca,posicao,posicao - tamanho_peca)
+    else:
+        insere_peca(tabuleiro,tamanho_peca,posicao,posicao + tamanho_peca) 
+      
 
 def mostra_resultado(estado_jogo):
     if(mod.game_inprogress(estado_jogo)):
@@ -49,3 +62,35 @@ def le_ficheiro(nome_ficheiro):
     except Exception as e:
         print("Ocorreu um erro no carregamento.")
     return estado_jogo
+
+def validar_pecas_especiais(estado_jogo,tamanho_peca):
+    pecas = mod.obter_pecas_especiais(estado_jogo)
+    if(tamanho_peca == 1):
+        return True
+    if(tamanho_peca in pecas):
+        return True
+    else:
+        return False
+
+def validar_posicao(estado_jogo,tamanho_peca,posicao,sentido):
+    tabuleiro = mod.obter_tabuleiro(estado_jogo)
+    if(sentido == "E"):
+        posicao_final = posicao - tamanho_peca
+        if(posicao_final < 0):
+            return False
+        else:
+            return True
+    else:
+        posicao_final = posicao + tamanho_peca
+        if(posicao_final > len(tabuleiro)-1):
+            return False
+        else:
+            return True
+
+def insere_peca(tabuleiro,tamanho_peca,posicao_inicial,posicao_final):
+    pass
+
+def sequencia_vencedora(estado_jogo,tamanho_sequencia):
+    tabuleiro = mod.obter_tabuleiro(estado_jogo)
+    for linha in range (0, len(tabuleiro)):
+            for coluna in range(0,len(tabuleiro[coluna])):
