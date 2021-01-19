@@ -16,7 +16,7 @@ def cria_estado():
             "comprimento":int,
             "altura":int,
             "tamanho_sequencia":int,
-            "tamanho_peças_especiais": [],
+            "tamanho_pecas_especiais": [],
             "tabuleiro":[],
             "vencedor":str,      
             }
@@ -35,3 +35,12 @@ def quem_vez(estado_jogo):
 #Devolve uma lista  com os nomes dos jogadores que estão a participar no jogo em curso
 def jogo_jogadores(estado_jogo):
     return estado_jogo["jogador1"],estado_jogo["jogador2"]
+#Devolve false se a célula estiver vazia
+def not_empty(estado_jogo,linha,coluna):
+    return estado_jogo["tabuleiro"][linha][coluna] != " "
+#Devolve o "tamanho_sequencia"
+def obter_tamanho_sequencia(estado_jogo):
+    return estado_jogo["tamanho_sequencia"]
+#Devolve uma lista com a quantidade e tamanho de peças especiais
+def obter_pecas_especiais(estado_jogo):
+    return estado_jogo["tamanho_pecas_especiais"]

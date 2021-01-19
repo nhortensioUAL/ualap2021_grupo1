@@ -36,4 +36,5 @@ def cli():
             con.grava_ficheiro(estado_jogo,instrucao[1])
         if(instrucao[0] == "L"):
             estado_jogo = con.le_ficheiro(instrucao[1])
-             
+        else:
+            print ("Instrução inválida.")     
