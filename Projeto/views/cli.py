@@ -1,4 +1,4 @@
-from controller import game_controller as con
+import controller.game_controller as con
 from models import game_status as mod
 
 def cli():

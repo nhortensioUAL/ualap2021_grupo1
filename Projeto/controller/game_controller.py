@@ -1,5 +1,5 @@
 import pickle
-from models import game_status as mod
+import models.game_status as mod
 
 
 def regista_jogador(estado_jogo,nome):
@@ -24,7 +24,7 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
     tabuleiro = mod.obter_tabuleiro(estado_jogo)
     if(not mod.game_inprogress(estado_jogo)):
         print("Não existe jogo em curso.")
-    if(nome not in mod.jogo_jogadores):
+    if(nome not in mod.jogo_jogadores(estado_jogo)):
         print("Jogador não participa no jogo em curso.")
     if(not validar_pecas_especiais(estado_jogo,tamanho_peca)):
         print("Tamanho de peça não disponível.")
@@ -105,7 +105,25 @@ def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
     print("Peça colocada.")
     return tabuleiro
 
-def sequencia_vencedora(estado_jogo,tamanho_sequencia):
-    tabuleiro = mod.obter_tabuleiro(estado_jogo)
+def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
+    lista_pecas = []
+    sequencia_linha = 1
+    sequencia_coluna = 1
+    sequencia_diagonal_positiva = 1
+    sequencia_diagonal_negativa = 1
     for linha in range (0, len(tabuleiro)):
             for coluna in range(0,len(tabuleiro[coluna])):
+                if(tabuleiro[linha][coluna] == nome):
+                    lista_pecas.append((linha,coluna))
+    lista_pecas = lista_pecas.sort()
+    for peca1 in lista_pecas:
+        for peca2 in lista_pecas:
+            if (peca2[0] == peca1[0]+1 and peca2[1]==peca1[1]):
+                sequencia_coluna +=1
+            if (peca2[0] == peca1[0] and peca2[1] == peca1[1] + 1):
+                sequencia_linha +=1
+            if(peca2[0] == peca1[0] +1 and peca2[1] == peca1[1] + 1 ):
+                sequencia_diagonal_positiva +=1
+            if(peca2[0] == peca1[0] - 1 and peca2[1] == peca1[1] - 1 ):
+                sequencia_diagonal_negativa +=1
+    return sequencia_linha == tamanho_sequencia or sequencia_coluna == tamanho_sequencia or sequencia_diagonal_positiva == tamanho_sequencia or sequencia_diagonal_negativa == tamanho_sequencia
