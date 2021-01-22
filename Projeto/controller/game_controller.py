@@ -36,7 +36,7 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
         tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao - tamanho_peca,posicao)
     else:
         tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,posicao + tamanho_peca) 
-    if(sequencia_vencedora(tabuleiro,nome,tamanho_sequencia)):
+    if(sequencia_vencedora(tabuleiro,nome,estado_jogo["tamanho_sequencia"])):
         estado_jogo = terminar_jogo(estado_jogo,nome)
         print("Sequência conseguida. Jogo terminado.")
     else:    
