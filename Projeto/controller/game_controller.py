@@ -36,7 +36,11 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
         tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao - tamanho_peca,posicao)
     else:
         tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,posicao + tamanho_peca) 
-    estado_jogo["tabuleiro"] = tabuleiro
+    if(sequencia_vencedora(tabuleiro,nome,tamanho_sequencia)):
+        estado_jogo = terminar_jogo(estado_jogo,nome)
+        print("Sequência conseguida. Jogo terminado.")
+    else:    
+        estado_jogo["tabuleiro"] = tabuleiro
     return estado_jogo
       
 
@@ -127,3 +131,11 @@ def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
             if(peca2[0] == peca1[0] - 1 and peca2[1] == peca1[1] - 1 ):
                 sequencia_diagonal_negativa +=1
     return sequencia_linha == tamanho_sequencia or sequencia_coluna == tamanho_sequencia or sequencia_diagonal_positiva == tamanho_sequencia or sequencia_diagonal_negativa == tamanho_sequencia
+
+
+def terminar_jogo(estado_jogo,nome):
+    estado_jogo["jogador1"], estado_jogo["jogador2"],estado_jogo["em curso"],estado_jogo["vez"] = " "
+    for jogador in estado_jogo["jogadores"]:
+        if(jogador == nome):
+            estado_jogo["nr_vitorias"] +=1
+    return estado_jogo

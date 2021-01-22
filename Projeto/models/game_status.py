@@ -17,8 +17,7 @@ def cria_estado():
             "altura":int,
             "tamanho_sequencia":int,
             "tamanho_pecas_especiais": [],
-            "tabuleiro":[],
-            "vencedor":str,      
+            "tabuleiro":[],      
             }
             ]     
         }
