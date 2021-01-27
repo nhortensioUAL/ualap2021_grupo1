@@ -3,9 +3,9 @@ from models import game_status as mod
 
 def cli():
     estado_jogo = mod.cria_estado()
-    instrucao = input("Insira a instrucao:")
-    instrucao = instrucao.split(" ")
     while True:
+        instrucao = input("Insira a instrução:")
+        instrucao = instrucao.split(" ")
         if(instrucao[0] == "RJ"):
             con.regista_jogador(estado_jogo,instrucao[1])
         if(instrucao[0] == "EJ"):
@@ -13,18 +13,18 @@ def cli():
         if(instrucao[0] == "LJ"):
             con.listar_jogadores(estado_jogo)
         if(instrucao[0] == "IJ"):
-            segunda_linha= input()
+            segunda_linha = input("Digite o Comprimento da Grelha, a Altura da Grelha e o Tamanho da Sequência Vencedora: ")
             segunda_linha = segunda_linha.split(" ")
-            tamanho_pecas = input()
+            tamanho_pecas = input("Digite o tamanho de cada peça especial desejada:")
             tamanho_pecas = tamanho_pecas.split(" ")
-            con.iniciar_jogo(estado_jogo,instrucao[1],instrucao[2],segunda_linha[0],segunda_linha[1],segunda_linha[2], tamanho_pecas)
+            estado_jogo = con.iniciar_jogo(estado_jogo,instrucao[1],instrucao[2],int(segunda_linha[0]),int(segunda_linha[1]),int(segunda_linha[2]), tamanho_pecas)
         if(instrucao[0] == "DJ"): 
             con.detalhes_jogo(estado_jogo)
         if(instrucao[0] == "D"):
-            if(instrucao[2]):
-                con.desistir(estado_jogo,instrucao[1],instrucao[2])
+            if(len(instrucao) == 3):
+                estado_jogo = con.desistir(estado_jogo,instrucao[1],instrucao[2])
             else:
-                con.desistir(estado_jogo,instrucao[1])
+                estado_jogo = con.desistir(estado_jogo,instrucao[1])
         if(instrucao[0] == "CP"):
             if(instrucao[2] == "1"):
                 con.coloca_peca(estado_jogo,instrucao[1],instrucao[2],instrucao[3])
@@ -36,5 +36,5 @@ def cli():
             con.grava_ficheiro(estado_jogo,instrucao[1])
         if(instrucao[0] == "L"):
             estado_jogo = con.le_ficheiro(instrucao[1])
-        else:
-            print ("Instrução inválida.")     
+        # else:
+        #     print ("Instrução inválida.")
