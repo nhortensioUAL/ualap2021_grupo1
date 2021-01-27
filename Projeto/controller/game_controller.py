@@ -12,13 +12,89 @@ def listar_jogadores(estado_jogo):
     pass
 
 def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,tamanho_pecas):
-    pass
+    if mod.game_inprogress(estado_jogo):
+        print("Existe um jogo em curso.")
+    else: 
+        if nome1 not in mod.jogadores_cadastrados(estado_jogo) or nome2 not in mod.jogadores_cadastrados(estado_jogo):
+            print(mod.jogo_jogadores(estado_jogo))
+            print("Jogador não registrado.")
+        else: 
+            if comprimento <= 0 or altura <= 0 or (comprimento/2) > altura or altura < comprimento:
+                print("Dimensões de grelha inválidas.")
+            else: 
+                if tamanho_sequencia <= 0 or tamanho_sequencia > comprimento:
+                    print("Tamanho de sequência inválido.")
+                else:
+                    c_peca_invalida = 0
+                    for peca in tamanho_pecas:
+                        if int(peca) <= 0 and int(peca) >= tamanho_sequencia:
+                            print("Tamanho de sequência inválido.")
+                            c_peca_invalida +=1
+
+                    if c_peca_invalida == 0:
+                        estado_jogo["estado"]["em_curso"] = True
+                        estado_jogo["estado"]["comprimento"] = comprimento
+                        estado_jogo["estado"]["altura"] = altura
+                        estado_jogo["estado"]["tamanho_sequencia"] = tamanho_sequencia
+                        estado_jogo["estado"]["tamanho_pecas_especiais"][0]["nome"] = nome1
+                        estado_jogo["estado"]["tamanho_pecas_especiais"][1]["nome"] = nome2
+                        estado_jogo["estado"]["jogador1"] = nome1
+                        estado_jogo["estado"]["jogador2"] = nome2
+                        for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
+                            for peca in tamanho_pecas:
+                                
+                                jogador["pecas_especiais"].append(peca)                            
+                        
+                        print(f"Jogo iniciado entre {nome1} e {nome2}.")
+    return estado_jogo
 
 def detalhes_jogo(estado_jogo):
+    if not mod.game_inprogress(estado_jogo):
+        print("Não existe um jogo em curso.")
+    else:
+        print(str(estado_jogo["estado"]["comprimento"]) + " " + str(estado_jogo["estado"]["altura"]))
+        for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
+            pecas_esp = dict((i,jogador["pecas_especiais"].count(i)) for i in jogador["pecas_especiais"])
+            print(jogador["nome"])
+            c_pecas = 0
+            while c_pecas < len(pecas_esp):
+                key = list(pecas_esp.keys())[c_pecas]
+                value = list(pecas_esp.values())[c_pecas]
+                print(f"{key} {value}")
+                c_pecas +=1
     pass
 
 def desistir(estado_jogo,nome1,nome2=" "):
-    pass
+    print(estado_jogo)
+    if not mod.game_inprogress(estado_jogo):
+        print("Não existe um jogo em curso.")
+    else:
+        if nome1 not in mod.jogadores_cadastrados(estado_jogo) or (nome2 != " " and nome2 not in mod.jogadores_cadastrados(estado_jogo)):
+            print("Jogador não registrado.")
+        else:
+            if nome1 not in mod.jogo_jogadores(estado_jogo) or (nome2 != " " and nome2 not in mod.jogo_jogadores(estado_jogo)):
+                print("Jogador não participa do jogo em curso.")
+            else:
+                c_jogador = 0
+                if (nome2 == " "):
+                    for jogador in mod.jogo_jogadores(estado_jogo):
+                        if jogador == nome1:
+                            estado_jogo["jogadores"][c_jogador]["nr_jogos"]+=1
+                            c_jogador +=1
+                        else: 
+                            estado_jogo["jogadores"][c_jogador]["nr_vitorias"]+=1
+                            estado_jogo["jogadores"][c_jogador]["nr_jogos"]+=1
+                            c_jogador +=1
+                else: 
+                    for jogador in mod.jogo_jogadores(estado_jogo):
+                        if jogador == nome1 or jogador == nome2:
+                            estado_jogo["jogadores"][c_jogador]["nr_jogos"]+=1
+                            c_jogador +=1
+
+                estado_jogo["estado"]["em_curso"] = False
+                print("Desistência com sucesso. Jogo terminado.")
+
+    return estado_jogo
 
 def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
     tabuleiro = mod.obter_tabuleiro(estado_jogo)
