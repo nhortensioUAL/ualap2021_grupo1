@@ -13,9 +13,9 @@ def cli():
         if(instrucao[0] == "LJ"):
             con.listar_jogadores(estado_jogo)
         if(instrucao[0] == "IJ"):
-            segunda_linha = input("Digite o Comprimento da Grelha, a Altura da Grelha e o Tamanho da Sequência Vencedora: ")
+            segunda_linha = input()
             segunda_linha = segunda_linha.split(" ")
-            tamanho_pecas = input("Digite o tamanho de cada peça especial desejada:")
+            tamanho_pecas = input()
             tamanho_pecas = tamanho_pecas.split(" ")
             estado_jogo = con.iniciar_jogo(estado_jogo,instrucao[1],instrucao[2],int(segunda_linha[0]),int(segunda_linha[1]),int(segunda_linha[2]), tamanho_pecas)
         if(instrucao[0] == "DJ"): 
