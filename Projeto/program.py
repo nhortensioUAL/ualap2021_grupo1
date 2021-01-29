@@ -1,4 +1,4 @@
-import  cli
+from views import cli
 
-if if __name__ == "__main__":
-    cli()
+if __name__ == "__main__":
+    cli.cli()
