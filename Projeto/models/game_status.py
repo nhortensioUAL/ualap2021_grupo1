@@ -6,12 +6,7 @@ def cria_estado():
             "nr_vitorias": int,
             "nr_jogos": int,
              },
-            {
-            "nome": str,
-            "nr_vitorias": int,
-            "nr_jogos": int,
-             }
-                    ],
+            ],
         "estado":
             {
             "em_curso":bool,
@@ -26,10 +21,6 @@ def cria_estado():
                 "nome": str,
                 "pecas_especiais": []
                 },
-                {
-                "nome": str,
-                "pecas_especiais": []
-                }
             ],
             "tabuleiro":[],      
             }     
@@ -62,9 +53,9 @@ def jogo_jogadores(estado_jogo):
     return estado_jogo["estado"]["jogador1"],estado_jogo["estado"]["jogador2"]
 
 
-#Devolve false se a célula estiver vazia
-def not_empty(estado_jogo,linha,coluna):
-    return estado_jogo["estado"]["tabuleiro"][linha][coluna] != " "
+#Devolve False se a célula estiver vazia
+def not_empty(tabuleiro,linha,coluna):
+    return tabuleiro[linha][coluna] != "Vazio"
 
 
 #Devolve o "tamanho_sequencia"

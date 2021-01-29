@@ -36,6 +36,7 @@ def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,ta
                 estado_jogo["estado"]["tamanho_pecas_especiais"][1]["nome"] = nome2
                 estado_jogo["estado"]["jogador1"] = nome1
                 estado_jogo["estado"]["jogador2"] = nome2
+                estado_jogo["estado"]["tabuleiro"]= [["Vazio" for _ in range(altura)] for _ in range(comprimento)]
                 for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
                     for peca in tamanho_pecas:
                         jogador["pecas_especiais"].append(peca)                            
@@ -171,16 +172,12 @@ def validar_posicao(estado_jogo,tamanho_peca,posicao,sentido):
             return True
 
 def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
-    nr_pecas = tamanho_peca
     for linha in range (0, len(tabuleiro)):
       for coluna in range(posicao_inicial,posicao_final):
-        if(linha == len(tabuleiro) and nr_pecas > 0):
+        if(mod.not_empty(tabuleiro,linha,coluna)):
+            tabuleiro[linha-1][coluna] = nome
+        elif(linha == len(tabuleiro)):
             tabuleiro[linha][coluna] = nome
-            nr_pecas -=1
-        else:   
-            if(mod.not_empty(tabuleiro,linha,coluna) and nr_pecas > 0):
-                tabuleiro[linha-1][coluna] = nome
-                nr_pecas -=1
     print("Peça colocada.")
     return tabuleiro
 

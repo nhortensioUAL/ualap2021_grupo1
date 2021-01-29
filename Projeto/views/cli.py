@@ -1,10 +1,10 @@
-import controller.game_controller as con
+from controller import game_controller as con
 from models import game_status as mod
 
 def cli():
     estado_jogo = mod.cria_estado()
     while True:
-        instrucao = input("Insira a instrução:")
+        instrucao = input()
         instrucao = instrucao.split(" ")
         if(instrucao[0] == "RJ"):
             con.regista_jogador(estado_jogo,instrucao[1])
