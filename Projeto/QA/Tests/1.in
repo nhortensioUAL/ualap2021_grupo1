@@ -1,0 +1,22 @@
+RJ Bob
+RJ Alice
+RJ Alice
+RJ Eve
+RJ Trudy
+EJ Trudy
+EJ Trudy
+LJ
+DJ
+IJ Alice Trudy
+6 5 4
+3 3 2 2 2
+IJ Bob Alice
+6 5 4
+3 3 2 2 2
+DJ
+CP Alice 3 1 D
+CP Bob 2 2 D
+V
+CP Alice 1 4
+LJ
+G jogo.save

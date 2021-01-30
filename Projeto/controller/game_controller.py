@@ -1,15 +1,28 @@
+from Projeto.models.game_status import jogadores_cadastrados
 import pickle
 import models.game_status as mod
 
 
 def regista_jogador(estado_jogo,nome):
-    pass
+    if(existe_jogador(estado_jogo,nome)):
+        print("Jogador existente.", "\n")
+    else:
+        dicionario = {"nome":nome,"nr_vitorias":0,"nr_jogos":0}
+        estado_jogo["jogadores"].append(dicionario)
+        print ("Jogador registado com sucesso.", "\n")
 
 def remover_jogador(estado_jogo,nome):
-    pass
+    if(existe_jogador(estado_jogo,nome) == False):
+        print("Jogador não existente.", "\n")
+    elif(mod.jogo_jogadores(["estado"]["jogador1"])==(estado_jogo,nome)) or (mod.jogo_jogadores(["estado"]["jogador2"])==(estado_jogo,nome)):
+        print("Jogador participa no jogo em curso.", "\n")
+    else:
+        del estado_jogo["jogadores"]["nome":nome]
+        print ("Jogador removido com sucesso.", "\n")
 
 def listar_jogadores(estado_jogo):
-    pass
+    print(jogadores_cadastrados)
+    print ("Não existem jogadores registados.", "\n")
 
 def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,tamanho_pecas):
     if mod.game_inprogress(estado_jogo):
@@ -144,8 +157,16 @@ def le_ficheiro(nome_ficheiro):
     return estado_jogo
 
 
+<<<<<<< HEAD
 
 
+=======
+def existe_jogador(estado_jogo,nome):
+   for jogador in estado_jogo["jogadores"]:
+        if(jogador["nome"] == nome):
+            return True
+   return False
+>>>>>>> b7378d2fa18f927bdcf7772b097f3e0675631b4e
 
 def validar_pecas_especiais(estado_jogo,tamanho_peca):
     pecas = mod.obter_pecas_especiais(estado_jogo)

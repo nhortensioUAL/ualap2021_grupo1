@@ -1,0 +1,13 @@
+RJ Alice
+RJ Bob
+LJ
+L jogo2.save
+LJ
+V
+CP Alice 3 1 D
+CP Bob 2 2 D
+CP Alice 3 1 D
+DJ
+CP Alice 1 4 D
+V
+LJ
