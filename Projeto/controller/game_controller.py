@@ -1,6 +1,6 @@
-from Projeto.models.game_status import jogadores_cadastrados
+from projeto.models.game_status import jogadores_cadastrados
 import pickle
-import models.game_status as mod
+import projeto.models.game_status as mod
 
 
 def regista_jogador(estado_jogo,nome):
@@ -12,17 +12,20 @@ def regista_jogador(estado_jogo,nome):
         print ("Jogador registado com sucesso.", "\n")
 
 def remover_jogador(estado_jogo,nome):
-    if(existe_jogador(estado_jogo,nome) == False):
+    if(not existe_jogador(estado_jogo,nome)):
         print("Jogador não existente.", "\n")
-    elif(mod.jogo_jogadores(["estado"]["jogador1"])==(estado_jogo,nome)) or (mod.jogo_jogadores(["estado"]["jogador2"])==(estado_jogo,nome)):
+    elif((estado_jogo["estado"]["jogador1"]==nome) or (estado_jogo["estado"]["jogador2"]==nome)):
         print("Jogador participa no jogo em curso.", "\n")
     else:
         del estado_jogo["jogadores"]["nome":nome]
         print ("Jogador removido com sucesso.", "\n")
 
 def listar_jogadores(estado_jogo):
-    print(jogadores_cadastrados)
-    print ("Não existem jogadores registados.", "\n")
+    if len(estado_jogo["jogadores"]) < 1:
+        print ("Não existem jogadores registados.", "\n")
+    else:
+        for jogador in estado_jogo["jogadores"]:
+            print(str(jogador["nome"]) + " " + str(jogador["nr_jogos"]) + " " + str(jogador["nr_vitorias"]))
 
 def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,tamanho_pecas):
     if mod.game_inprogress(estado_jogo):

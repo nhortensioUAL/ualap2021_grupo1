@@ -1,12 +1,6 @@
 def cria_estado():
     return {
-        "jogadores": [
-            {
-            "nome": str,
-            "nr_vitorias": int,
-            "nr_jogos": int,
-             },
-            ],
+        "jogadores": [],
         "estado":
             {
             "em_curso":bool,
@@ -45,8 +39,6 @@ def jogadores_cadastrados(estado_jogo):
     jogadores = []
     for jogador in estado_jogo["jogadores"]: 
         jogadores.append(jogador["nome"])
-        jogadores.append(jogador["nr_vitorias"])
-        jogadores.append(jogador["nr_jogos"])
     return jogadores
 
 

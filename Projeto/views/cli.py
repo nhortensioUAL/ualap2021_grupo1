@@ -1,5 +1,5 @@
-from controller import game_controller as con
-from models import game_status as mod
+from projeto.controller import game_controller as con
+from projeto.models import game_status as mod
 
 def cli():
     estado_jogo = mod.cria_estado()
