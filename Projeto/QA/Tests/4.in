@@ -1,0 +1,11 @@
+RJ Bob
+RJ Alice
+RJ Eve
+LJ
+IJ Bob Alice
+6 5 4
+3 3 2 2 2
+CP Alice 3 1 D
+CP Bob 2 2 D
+V
+G jogo2.save

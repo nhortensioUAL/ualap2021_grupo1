@@ -45,6 +45,8 @@ def jogadores_cadastrados(estado_jogo):
     jogadores = []
     for jogador in estado_jogo["jogadores"]: 
         jogadores.append(jogador["nome"])
+        jogadores.append(jogador["nr_vitorias"])
+        jogadores.append(jogador["nr_jogos"])
     return jogadores
 
 
