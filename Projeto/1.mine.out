@@ -1,0 +1,61 @@
+Jogador registado com sucesso.
+Jogador registado com sucesso.
+Jogador existente.
+Jogador registado com sucesso.
+Jogador registado com sucesso.
+Jogador removido com sucesso.
+Jogador não existente.
+Alice 0 0
+Bob 0 0
+Eve 0 0
+Não existe jogo em curso.
+Jogador não registado.
+Jogo iniciado entre Alice e Bob.
+6 5
+PECAS ESPECIAIS ['3', '3', '2', '2', '2']
+{'3': 2, '2': 3}
+Alice
+3 2
+2 3
+PECAS ESPECIAIS ['3', '3', '2', '2', '2']
+{'3': 2, '2': 3}
+Bob
+3 2
+2 3
+Peça colocada.
+Peça colocada.
+1 1 Vazio
+1 2 Vazio
+1 3 Vazio
+1 4 Vazio
+1 5 Vazio
+1 6 Vazio
+2 1 Vazio
+2 2 Vazio
+2 3 Vazio
+2 4 Vazio
+2 5 Vazio
+2 6 Vazio
+3 1 Vazio
+3 2 Vazio
+3 3 Vazio
+3 4 Vazio
+3 5 Vazio
+3 6 Vazio
+4 1 Vazio
+4 2 Bob
+4 3 Bob
+4 4 Vazio
+4 5 Vazio
+4 6 Vazio
+5 1 Alice
+5 2 Alice
+5 3 Alice
+5 4 Vazio
+5 5 Vazio
+5 6 Vazio
+Sequência conseguida. Jogo terminado.
+Alice 1 1
+Bob 1 0
+Eve 0 0
+Jogo gravado.

@@ -4,8 +4,11 @@ from models import game_status as mod
 def cli():
     estado_jogo = mod.cria_estado()
     while True:
-        instrucao = input()
-        instrucao = instrucao.split(" ")
+        try:
+            instrucao = input()
+            instrucao = instrucao.split(" ")
+        except EOFError as e1:
+            break
         if(instrucao[0] == "RJ"):
             con.regista_jogador(estado_jogo,instrucao[1])
         elif(instrucao[0] == "EJ"):
