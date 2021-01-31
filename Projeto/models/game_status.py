@@ -10,12 +10,7 @@ def cria_estado():
             "comprimento":int,
             "altura":int,
             "tamanho_sequencia":int,
-            "tamanho_pecas_especiais": [
-                {
-                "nome": str,
-                "pecas_especiais": []
-                },
-            ],
+            "tamanho_pecas_especiais": [],
             "tabuleiro":[],      
             }     
         }
@@ -57,5 +52,7 @@ def obter_tamanho_sequencia(estado_jogo):
     return estado_jogo["estado"]["tamanho_sequencia"]
 
 #Devolve uma lista com a quantidade e tamanho de peças especiais
-def obter_pecas_especiais(estado_jogo):
-    return estado_jogo["estado"]["tamanho_pecas_especiais"]
+def obter_pecas_especiais(estado_jogo, nome):
+    for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
+        if nome == jogador["nome"]:
+            return jogador["pecas_especiais"]

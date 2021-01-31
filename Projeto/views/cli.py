@@ -1,5 +1,5 @@
-from projeto.controller import game_controller as con
-from projeto.models import game_status as mod
+from controller import game_controller as con
+from models import game_status as mod
 
 def cli():
     estado_jogo = mod.cria_estado()
@@ -27,9 +27,9 @@ def cli():
                 estado_jogo = con.desistir(estado_jogo,instrucao[1])
         if(instrucao[0] == "CP"):
             if(instrucao[2] == "1"):
-                con.coloca_peca(estado_jogo,instrucao[1],instrucao[2],instrucao[3])
+                con.coloca_peca(estado_jogo,instrucao[1],int(instrucao[2]),int(instrucao[3]))
             else:
-                con.coloca_peca(estado_jogo,instrucao[1],instrucao[2],instrucao[3],instrucao[4])
+                con.coloca_peca(estado_jogo,instrucao[1],int(instrucao[2]),int(instrucao[3]),instrucao[4])
         if(instrucao[0] == "V"):        
             con.mostra_resultado(estado_jogo)
         if(instrucao[0] == "G"):
