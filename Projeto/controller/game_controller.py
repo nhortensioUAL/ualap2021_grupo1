@@ -1,8 +1,7 @@
-from models.game_status import jogadores_cadastrados
 import pickle
 import models.game_status as mod
 
-
+## Instrução RJ. Regista um jogador na lista de jogadores caso este já não tenha sido registado.
 def regista_jogador(estado_jogo,nome):
     if(existe_jogador(estado_jogo,nome)):
         print("Jogador existente.")
@@ -11,6 +10,8 @@ def regista_jogador(estado_jogo,nome):
         estado_jogo["jogadores"].append(dicionario)
         print ("Jogador registado com sucesso.")
 
+## instrução EJ. Elimina um jogador da lista de jogadores caso este esteja contido na mesma e
+##  não participe em nenhum jogo.
 def remover_jogador(estado_jogo,nome):
     jogadores = estado_jogo["jogadores"]
     if(not existe_jogador(estado_jogo,nome)):
@@ -25,6 +26,8 @@ def remover_jogador(estado_jogo,nome):
         estado_jogo["jogadores"] = jogadores
         return estado_jogo
 
+## Instrução LJ. Imprime o nome,número de jogos jogados e número de vitórias
+##  dos jogadores inscritos por ordem alfabetica 
 def listar_jogadores(estado_jogo):
     jogadores = ordena_nome(estado_jogo["jogadores"])
     if (len(jogadores) < 1):
@@ -33,21 +36,23 @@ def listar_jogadores(estado_jogo):
         for jogador in jogadores:
             print(jogador["nome"], str(jogador["nr_jogos"]), str(jogador["nr_vitorias"]))
 
+## Instrução IJ. Inicia um jogo entre dois jogadores com o comprimento, altura, nº sequencia vencedora e
+##  quantidade de peças especiais
 def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,tamanho_pecas):
-    if mod.game_inprogress(estado_jogo):
+    if (mod.game_inprogress(estado_jogo)):
         print("Existe jogo em curso.")
-    elif nome1 not in mod.jogadores_cadastrados(estado_jogo) or nome2 not in mod.jogadores_cadastrados(estado_jogo):
+    elif (nome1 not in mod.jogadores_cadastrados(estado_jogo)) or (nome2 not in mod.jogadores_cadastrados(estado_jogo)):
         print("Jogador não registado.")
-    elif comprimento <= 0 or altura <= 0 or altura < (comprimento / 2) or altura > comprimento:
+    elif (comprimento <= 0) or (altura <= 0) or (altura < (comprimento / 2)) or (altura > comprimento):
         print("Dimensões de grelha inválidas.")
-    elif tamanho_sequencia <= 0 or tamanho_sequencia > comprimento:
+    elif (tamanho_sequencia <= 0) or (tamanho_sequencia > comprimento):
         print("Tamanho de sequência inválido.")
     else:
         c_peca_invalida = 0
         if(tamanho_pecas[0] == ""):
             tamanho_pecas[0] = 0           
         for peca in tamanho_pecas:
-            if(int(peca) < 0 or int(peca) >= tamanho_sequencia):
+            if((int(peca) < 0) or (int(peca) >= tamanho_sequencia)):
                 c_peca_invalida +=1
         if(c_peca_invalida > 0):
             print("Dimensões de peças especiais inválidas.")
@@ -68,8 +73,10 @@ def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,ta
             print("Jogo iniciado entre", estado_jogo["estado"]["tamanho_pecas_especiais"][0]["nome"], "e", estado_jogo["estado"]["tamanho_pecas_especiais"][1]["nome"] + ".")
     return estado_jogo
 
+
+## Instrução DJ. Imprime 
 def detalhes_jogo(estado_jogo):
-    if not mod.game_inprogress(estado_jogo):
+    if (not mod.game_inprogress(estado_jogo)):
         print("Não existe jogo em curso.")
     else:
         print(str(estado_jogo["estado"]["comprimento"]), str(estado_jogo["estado"]["altura"]))
@@ -78,7 +85,7 @@ def detalhes_jogo(estado_jogo):
             c_pecas = 0
             for item in estado_jogo["estado"]["tamanho_pecas_especiais"]:
                 while c_pecas < len(item["pecas_especiais"]):
-                    if item["nome"] == jogador["nome"]:
+                    if (item["nome"] == jogador["nome"]):
                         key = list(item["pecas_especiais"].keys())[c_pecas]
                         value = list(item["pecas_especiais"].values())[c_pecas]
                         print(f"{key} {value}")
@@ -87,11 +94,11 @@ def detalhes_jogo(estado_jogo):
 
 
 def desistir(estado_jogo,nome1,nome2=" "):
-    if not mod.game_inprogress(estado_jogo):
+    if (not mod.game_inprogress(estado_jogo)):
         print("Não existe jogo em curso.")
-    elif nome1 not in mod.jogadores_cadastrados(estado_jogo) or (nome2 != " " and nome2 not in mod.jogadores_cadastrados(estado_jogo)):
+    elif (nome1 not in mod.jogadores_cadastrados(estado_jogo)) or (nome2 != " " and nome2 not in mod.jogadores_cadastrados(estado_jogo)):
         print("Jogador não registado.")
-    elif nome1 not in mod.jogo_jogadores(estado_jogo) or (nome2 != " " and nome2 not in mod.jogo_jogadores(estado_jogo)):
+    elif (nome1 not in mod.jogo_jogadores(estado_jogo)) or (nome2 != " " and nome2 not in mod.jogo_jogadores(estado_jogo)):
         print("Jogador não participa do jogo em curso.")
     else:
         if(nome2 == " "):
@@ -143,7 +150,7 @@ def mostra_resultado(estado_jogo):
             for coluna in range(0,len(tabuleiro[0])):
                 print (linha+1,coluna+1,tabuleiro[linha][coluna], sep = " ")
     else:
-        print("Não existe jogo em curso")
+        print("Não existe jogo em curso.")
 
 def grava_ficheiro(estado_jogo,nome_ficheiro):
     try:
@@ -163,6 +170,7 @@ def le_ficheiro(nome_ficheiro):
         print("Ocorreu um erro no carregamento.")
     return estado_jogo
 
+## Valida se um jogador já está registado.
 def existe_jogador(estado_jogo,nome):
    for jogador in estado_jogo["jogadores"]:
         if(jogador["nome"] == nome):
@@ -172,7 +180,7 @@ def existe_jogador(estado_jogo,nome):
 def ordena_nome(jogadores):
     for i in range(len(jogadores)):
         for j in range(len(jogadores)-i-1):
-            if jogadores[j]["nome"] > jogadores[j+1]["nome"]:
+            if (jogadores[j]["nome"] > jogadores[j+1]["nome"]):
                 tmp = jogadores[j+1]
                 jogadores[j+1] = jogadores[j]
                 jogadores[j] = tmp
@@ -182,7 +190,7 @@ def validar_pecas_especiais(estado_jogo,nome,tamanho_peca):
     pecas = mod.obter_pecas_especiais(estado_jogo,nome)
     if(tamanho_peca == 1):
         return True
-    elif(str(tamanho_peca) in pecas):
+    elif(pecas[str(tamanho_peca)] > 0):
         return True
     else:
         return False
@@ -197,7 +205,7 @@ def validar_posicao(estado_jogo,tamanho_peca,posicao,sentido):
             return True
     else:
         posicao_final = posicao + tamanho_peca
-        if(posicao_final > len(tabuleiro[0])-1 or posicao > len(tabuleiro[0])-1):
+        if((posicao_final > len(tabuleiro[0])-1) or (posicao > len(tabuleiro[0])-1)):
             return False
         else:
             return True
@@ -218,30 +226,55 @@ def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
     return tabuleiro
 
 def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
-    lista_pecas = []
+    if(sequencia_linha(tabuleiro,nome,tamanho_sequencia)):
+        return True
+    elif(sequencia_coluna(tabuleiro,nome,tamanho_sequencia)):
+        return True
+    elif(sequencia_diagonal(tabuleiro,nome,tamanho_sequencia)):
+        return True
+    else:
+        return False
+    
+def sequencia_linha(tabuleiro,nome,tamanho_sequencia):
+    lista_pecas = [(-1,-1),(-1,-1)]
     sequencia_linha = 1
-    sequencia_coluna = 1
-    sequencia_diagonal_positiva = 1
-    sequencia_diagonal_negativa = 1
     for linha in range (0, len(tabuleiro)):
             for coluna in range(0,len(tabuleiro[0])):
                 if(tabuleiro[linha][coluna] == nome):
-                    lista_pecas.append((linha,coluna))   
-    print(lista_pecas)            
-    if lista_pecas == None:
-        return False
-    for peca1 in lista_pecas:
-        for peca2 in lista_pecas:
-            print("peca1",peca1,"peca2",peca2)
-            if (peca2[0] == peca1[0]+1 and peca2[1] == peca1[1]):
-                sequencia_coluna +=1
-            if (peca2[0] == peca1[0] and peca2[1] == peca1[1] + 1):
-                sequencia_linha +=1
-            if(peca2[0] == peca1[0] +1 and peca2[1] == peca1[1] + 1):
-                sequencia_diagonal_positiva +=1
-            if(peca2[0] == peca1[0] - 1 and peca2[1] == peca1[1] - 1):
-                sequencia_diagonal_negativa +=1
-    return sequencia_linha == tamanho_sequencia or sequencia_coluna == tamanho_sequencia or sequencia_diagonal_positiva == tamanho_sequencia or sequencia_diagonal_negativa == tamanho_sequencia
+                    lista_pecas.pop(0)
+                    lista_pecas.append((linha,coluna))
+                    if((lista_pecas[1][0] == lista_pecas[0][0]) and (lista_pecas[1][1] == lista_pecas[0][1] + 1)):
+                        sequencia_linha +=1
+                    else:
+                        sequencia_linha = 1
+    return sequencia_linha == tamanho_sequencia
+
+def sequencia_coluna(tabuleiro,nome,tamanho_sequencia):
+    lista_pecas = [(-1,-1),(-1,-1)]
+    sequencia_coluna = 1
+    for coluna in range (0, len(tabuleiro[0])):
+            for linha in range(0,len(tabuleiro)):
+                if(tabuleiro[linha][coluna] == nome):
+                    lista_pecas.pop(0)
+                    lista_pecas.append((linha,coluna))
+                    if((lista_pecas[1][0] == lista_pecas[0][0] + 1) and (lista_pecas[1][1] == lista_pecas[0][1])):
+                        sequencia_coluna +=1
+                    else:
+                        sequencia_coluna = 1
+    return sequencia_coluna == tamanho_sequencia
+
+def sequencia_diagonal(tabuleiro,nome,tamanho_sequencia):
+    lista_pecas = [(),()]
+    sequencia_diagonal_positiva = 1
+    sequencia_diagonal_negativa = 1
+    #if((lista_pecas[1][0] == lista_pecas[0][0] + 1) and (lista_pecas[1][1] == lista_pecas[0][1] + 1)):
+    #    sequencia_diagonal_positiva +=1
+    #else:
+    #    sequencia_diagonal_positiva = 1
+    #if((lista_pecas[1][0] == lista_pecas[0][0] - 1) and (lista_pecas[1][1] == lista_pecas[0][1] - 1)):
+    #    sequencia_diagonal_negativa +=1
+    #else: 
+    #    sequencia_diagonal_negativa = 1
 
 def terminar_jogo(estado_jogo,vencedor,derrotado,desistencia=False):
     for jogador in estado_jogo["jogadores"]:
@@ -266,6 +299,6 @@ def terminar_jogo(estado_jogo,vencedor,derrotado,desistencia=False):
 
 def retira_pecas_especiais(estado_jogo,nome,tamanho_peca):
     for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
-        if jogador["nome"] == nome and jogador["pecas_especiais"][str(tamanho_peca)] > 0:
+        if (jogador["nome"] == nome) and (jogador["pecas_especiais"][str(tamanho_peca)] > 0):
            jogador["pecas_especiais"][str(tamanho_peca)] -= 1
     return estado_jogo
