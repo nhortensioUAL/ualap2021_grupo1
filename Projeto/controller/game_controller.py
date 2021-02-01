@@ -61,7 +61,7 @@ def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,ta
             estado_jogo["estado"]["tabuleiro"]= [["Vazio" for _ in range(comprimento)] for _ in range(altura)]
             dicionario = {"nome":nome1,"pecas_especiais":tamanho_pecas}
             estado_jogo["estado"]["tamanho_pecas_especiais"].append(dicionario)
-            dicionario = {"nome":nome2,"pecas_especiais":tamanho_pecas}
+            dicionario = {"nome":nome2,"pecas_especiais":tamanho_pecas.copy()}
             estado_jogo["estado"]["tamanho_pecas_especiais"].append(dicionario)
             estado_jogo["estado"]["tamanho_pecas_especiais"] = ordena_nome(estado_jogo["estado"]["tamanho_pecas_especiais"])
             print("Jogo iniciado entre", estado_jogo["estado"]["tamanho_pecas_especiais"][0]["nome"], "e", estado_jogo["estado"]["tamanho_pecas_especiais"][1]["nome"] + ".")
@@ -130,10 +130,10 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
         if(tamanho_peca == 1):
             tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,posicao)
         elif(sentido == "E"):
-            tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao - tamanho_peca,posicao)
+            tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,(posicao - tamanho_peca) + 1,posicao)
             estado_jogo = retira_pecas_especiais(estado_jogo,nome,tamanho_peca)
         else:
-            tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,tamanho_peca + posicao) 
+            tabuleiro = insere_peca(tabuleiro,nome,tamanho_peca,posicao,(tamanho_peca + posicao) - 1) 
             estado_jogo = retira_pecas_especiais(estado_jogo,nome,tamanho_peca)
         if(sequencia_vencedora(tabuleiro,nome,estado_jogo["estado"]["tamanho_sequencia"])):
             if(estado_jogo["estado"]["jogador1"] == nome):
@@ -221,10 +221,10 @@ def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
             elif(linha == len(tabuleiro)-1):
                 tabuleiro[linha][posicao_inicial-1] = nome
         else:
-            for coluna in range(posicao_inicial-1,posicao_final-1):
-                if(mod.not_empty(tabuleiro,linha,coluna)):
+            for coluna in range(posicao_inicial-1,posicao_final):
+                if(mod.not_empty(tabuleiro,linha,coluna) and (not mod.not_empty(tabuleiro,linha-1,coluna))):
                     tabuleiro[linha-1][coluna] = nome
-                elif(linha == len(tabuleiro)-1):
+                elif(linha == len(tabuleiro)-1) and (not mod.not_empty(tabuleiro,linha,coluna)):
                     tabuleiro[linha][coluna] = nome
     return tabuleiro
 
@@ -237,11 +237,13 @@ def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
     for linha in range (0, len(tabuleiro)):
             for coluna in range(0,len(tabuleiro[0])):
                 if(tabuleiro[linha][coluna] == nome):
-                    lista_pecas.append((linha,coluna))               
+                    lista_pecas.append((linha,coluna))   
+    print(lista_pecas)            
     if lista_pecas == None:
         return False
     for peca1 in lista_pecas:
         for peca2 in lista_pecas:
+            print("peca1",peca1,"peca2",peca2)
             if (peca2[0] == peca1[0]+1 and peca2[1] == peca1[1]):
                 sequencia_coluna +=1
             if (peca2[0] == peca1[0] and peca2[1] == peca1[1] + 1):
@@ -250,6 +252,8 @@ def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
                 sequencia_diagonal_positiva +=1
             if(peca2[0] == peca1[0] - 1 and peca2[1] == peca1[1] - 1):
                 sequencia_diagonal_negativa +=1
+    print("sequencia_linha",sequencia_linha,"sequencia_coluna",sequencia_coluna)
+    print("sequencia_diagonal_positiva",sequencia_diagonal_positiva,"sequencia_diagonal_negativa",sequencia_diagonal_negativa)
     return sequencia_linha == tamanho_sequencia or sequencia_coluna == tamanho_sequencia or sequencia_diagonal_positiva == tamanho_sequencia or sequencia_diagonal_negativa == tamanho_sequencia
 
 def terminar_jogo(estado_jogo,vencedor,derrotado,desistencia=False):
@@ -274,17 +278,7 @@ def terminar_jogo(estado_jogo,vencedor,derrotado,desistencia=False):
     return estado_jogo
 
 def retira_pecas_especiais(estado_jogo,nome,tamanho_peca):
-    pecas_especiais = estado_jogo["estado"]["tamanho_pecas_especiais"]
-    nr_pecas = 1
-    for conj_peca in pecas_especiais:
-        lista_pecas = conj_peca["pecas_especiais"]
-        for peca in lista_pecas:
-            if(nr_pecas == 0):
-                print(pecas_especiais)
-                return estado_jogo
-            elif(conj_peca["nome"] == nome and int(peca) == tamanho_peca):
-                lista_pecas.pop(lista_pecas.index(peca))
-                conj_peca[nome]["pecas_especiais"] = lista_pecas
-                nr_pecas -=1
-    #estado_jogo["estado"]["tamanho_pecas_especiais"] = pecas_especiais
-    
+    for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
+        if jogador["nome"] == nome:
+            jogador["pecas_especiais"].remove(str(tamanho_peca))
+    return estado_jogo
