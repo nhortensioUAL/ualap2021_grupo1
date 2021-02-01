@@ -29,6 +29,7 @@ def game_inprogress(estado_jogo):
 def quem_vez(estado_jogo):
     return estado_jogo["estado"]["vez"]
 
+
 #Devolve uma lista com os jogadores inscritos
 def jogadores_cadastrados(estado_jogo):
     jogadores = []
@@ -42,17 +43,18 @@ def jogo_jogadores(estado_jogo):
     return estado_jogo["estado"]["jogador1"],estado_jogo["estado"]["jogador2"]
 
 
-#Devolve False se a célula estiver vazia
+#Valida se uma certa posição do tabuleiro está preenchida
 def not_empty(tabuleiro,linha,coluna):
     return tabuleiro[linha][coluna] != "Vazio"
 
 
-#Devolve o "tamanho_sequencia"
+#Devolve o tamanho da sequência vencedora
 def obter_tamanho_sequencia(estado_jogo):
     return estado_jogo["estado"]["tamanho_sequencia"]
+
 
 #Devolve uma lista com a quantidade e tamanho de peças especiais
 def obter_pecas_especiais(estado_jogo, nome):
     for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
-        if nome == jogador["nome"]:
+        if (nome == jogador["nome"]):
             return jogador["pecas_especiais"]

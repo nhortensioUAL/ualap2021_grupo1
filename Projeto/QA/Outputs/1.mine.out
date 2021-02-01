@@ -12,13 +12,9 @@ Não existe jogo em curso.
 Jogador não registado.
 Jogo iniciado entre Alice e Bob.
 6 5
-PECAS ESPECIAIS ['3', '3', '2', '2', '2']
-{'3': 2, '2': 3}
 Alice
 3 2
 2 3
-PECAS ESPECIAIS ['3', '3', '2', '2', '2']
-{'3': 2, '2': 3}
 Bob
 3 2
 2 3
