@@ -74,7 +74,7 @@ def iniciar_jogo(estado_jogo,nome1,nome2,comprimento,altura,tamanho_sequencia,ta
     return estado_jogo
 
 
-## Instrução DJ. Imprime 
+## Instrução DJ. Imprime os detalhes(comprimento,altura,jogadores e pecas especiais) do jogo em curso
 def detalhes_jogo(estado_jogo):
     if (not mod.game_inprogress(estado_jogo)):
         print("Não existe jogo em curso.")
@@ -93,6 +93,8 @@ def detalhes_jogo(estado_jogo):
                 c_pecas = 0
 
 
+## Instrução D. Termina o jogo em curso tendo em conta que o jogador que desiste é o perdedor e o outro
+## jogador é o vencedor
 def desistir(estado_jogo,nome1,nome2=" "):
     if (not mod.game_inprogress(estado_jogo)):
         print("Não existe jogo em curso.")
@@ -112,6 +114,8 @@ def desistir(estado_jogo,nome1,nome2=" "):
         print("Desistência com sucesso. Jogo terminado.")
     return estado_jogo
 
+
+## Instrução CP. Coloca a peça indicada no tabuleiro de jogo
 def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
     tabuleiro = mod.obter_tabuleiro(estado_jogo)
     if(not mod.game_inprogress(estado_jogo)):
@@ -143,6 +147,7 @@ def coloca_peca(estado_jogo,nome,tamanho_peca,posicao,sentido="E"):
     return estado_jogo
       
 
+## Instrução V. Imprime o tabuleiro de jogo no formato "Altura" "Comprimento" "Conteúdo"
 def mostra_resultado(estado_jogo):
     if(mod.game_inprogress(estado_jogo)):
         tabuleiro = mod.obter_tabuleiro(estado_jogo)
@@ -152,6 +157,8 @@ def mostra_resultado(estado_jogo):
     else:
         print("Não existe jogo em curso.")
 
+
+## Instrução G. Grava o estado de jogo num ficheiro
 def grava_ficheiro(estado_jogo,nome_ficheiro):
     try:
         with open(nome_ficheiro, "wb") as f:
@@ -160,6 +167,8 @@ def grava_ficheiro(estado_jogo,nome_ficheiro):
     except Exception as e:
         print("Ocorreu um erro na gravação.")
 
+
+## Instrução L. Lê o estado do jogo de um ficheiro
 def le_ficheiro(nome_ficheiro):
     estado_jogo = None
     try:
@@ -170,6 +179,7 @@ def le_ficheiro(nome_ficheiro):
         print("Ocorreu um erro no carregamento.")
     return estado_jogo
 
+
 ## Valida se um jogador já está registado.
 def existe_jogador(estado_jogo,nome):
    for jogador in estado_jogo["jogadores"]:
@@ -177,6 +187,8 @@ def existe_jogador(estado_jogo,nome):
             return True
    return False
    
+
+## Ordena uma lista de jogadores por ordem alfabetica
 def ordena_nome(jogadores):
     for i in range(len(jogadores)):
         for j in range(len(jogadores)-i-1):
@@ -186,6 +198,8 @@ def ordena_nome(jogadores):
                 jogadores[j] = tmp
     return jogadores
 
+
+## Valida se o jogador tem a peca especial disponivel para jogar
 def validar_pecas_especiais(estado_jogo,nome,tamanho_peca):
     pecas = mod.obter_pecas_especiais(estado_jogo,nome)
     if(tamanho_peca == 1):
@@ -195,6 +209,8 @@ def validar_pecas_especiais(estado_jogo,nome,tamanho_peca):
     else:
         return False
 
+
+## Valida se alguma das peças que estamos a tentar colocar fica fora do tabuleiro
 def validar_posicao(estado_jogo,tamanho_peca,posicao,sentido):
     tabuleiro = mod.obter_tabuleiro(estado_jogo)
     if(sentido == "E"):
@@ -210,6 +226,9 @@ def validar_posicao(estado_jogo,tamanho_peca,posicao,sentido):
         else:
             return True
 
+
+## Função auxiliar de coloca_peca. Dado um tabuleiro,o tamanho da peça e as posição inicial e posição final,
+##  coloca a peça no tabuleiro e retorna o tabuleiro modificado
 def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
     for linha in range (0,len(tabuleiro)):
         if(tamanho_peca == 1):
@@ -225,6 +244,8 @@ def insere_peca(tabuleiro,nome,tamanho_peca,posicao_inicial,posicao_final):
                     tabuleiro[linha][coluna] = nome
     return tabuleiro
 
+
+## Valida se existe uma sequência vencedora no tabuleiro
 def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
     if(sequencia_linha(tabuleiro,nome,tamanho_sequencia)):
         return True
@@ -234,7 +255,9 @@ def sequencia_vencedora(tabuleiro,nome,tamanho_sequencia):
         return True
     else:
         return False
-    
+
+
+## Valida se existe uma sequência vencedora em linha
 def sequencia_linha(tabuleiro,nome,tamanho_sequencia):
     lista_pecas = [(-1,-1),(-1,-1)]
     sequencia_linha = 1
@@ -249,6 +272,8 @@ def sequencia_linha(tabuleiro,nome,tamanho_sequencia):
                         sequencia_linha = 1
     return sequencia_linha == tamanho_sequencia
 
+
+## Valida se existe uma sequência vencedora em coluna
 def sequencia_coluna(tabuleiro,nome,tamanho_sequencia):
     lista_pecas = [(-1,-1),(-1,-1)]
     sequencia_coluna = 1
@@ -263,19 +288,30 @@ def sequencia_coluna(tabuleiro,nome,tamanho_sequencia):
                         sequencia_coluna = 1
     return sequencia_coluna == tamanho_sequencia
 
+
+## Valida se existe uma sequência vencedora na diagonal
 def sequencia_diagonal(tabuleiro,nome,tamanho_sequencia):
-    lista_pecas = [(),()]
+    lista_pecas = []
     sequencia_diagonal_positiva = 1
     sequencia_diagonal_negativa = 1
-    #if((lista_pecas[1][0] == lista_pecas[0][0] + 1) and (lista_pecas[1][1] == lista_pecas[0][1] + 1)):
-    #    sequencia_diagonal_positiva +=1
-    #else:
-    #    sequencia_diagonal_positiva = 1
-    #if((lista_pecas[1][0] == lista_pecas[0][0] - 1) and (lista_pecas[1][1] == lista_pecas[0][1] - 1)):
-    #    sequencia_diagonal_negativa +=1
-    #else: 
-    #    sequencia_diagonal_negativa = 1
+    for linha in range (0, len(tabuleiro)):
+        for coluna in range(0,len(tabuleiro[0])):
+            if(tabuleiro[linha][coluna] == nome):
+                lista_pecas.append((linha,coluna))
+    if (lista_pecas == None):
+        return False
+    for peca1 in lista_pecas:
+        for peca2 in lista_pecas:
+            if((peca2[0] == peca1[0] + 1) and (peca2[1] == peca1[1] + 1)):
+                sequencia_diagonal_positiva +=1
+            if((peca2[0] == peca1[0] - 1) and (peca2[1] == peca1[1] - 1)):
+                 sequencia_diagonal_negativa +=1
+    return (sequencia_diagonal_negativa == tamanho_sequencia) or (sequencia_diagonal_positiva==tamanho_sequencia)
 
+
+
+## Faz o fecho do jogo corrente atribuindo uma vitória ao jogador vencedor e atualizando o número de jogos
+##  jogados para cada jogador que fazia parte do jogo
 def terminar_jogo(estado_jogo,vencedor,derrotado,desistencia=False):
     for jogador in estado_jogo["jogadores"]:
         if(desistencia == True):
@@ -297,6 +333,8 @@ def terminar_jogo(estado_jogo,vencedor,derrotado,desistencia=False):
     estado_jogo["estado"]["tamanho_pecas_especiais"] = []
     return estado_jogo
 
+
+## Dada uma peca especial e um jogador, retira a peça especial da posse do jogador caso este a tenha jogado
 def retira_pecas_especiais(estado_jogo,nome,tamanho_peca):
     for jogador in estado_jogo["estado"]["tamanho_pecas_especiais"]:
         if (jogador["nome"] == nome) and (jogador["pecas_especiais"][str(tamanho_peca)] > 0):
